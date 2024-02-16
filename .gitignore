@@ -27,4 +27,4 @@
 **/config.js
 
 # middleware
-**/wildfly -10.1.0.Final (with APIMan, Keycloak)
+**/wildfly-10.1.0.Final
