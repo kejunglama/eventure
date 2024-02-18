@@ -2,6 +2,7 @@ import { User } from "../models/userModel.js";
 
 export const createUser = async (req, res) => {
   const { name, username } = req.body;
+  console.log(req.body);
   if (!name || !username) {
     return res
       .status(400)
@@ -11,6 +12,7 @@ export const createUser = async (req, res) => {
     const user = await User.create({ name, username });
     res.status(201).send(user);
   } catch (error) {
+    console.error(error);
     res.status(500).send({ message: error.message });
   }
 };
