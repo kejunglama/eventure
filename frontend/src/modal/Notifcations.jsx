@@ -116,9 +116,10 @@ const NotificationModal = () => {
                   <Notification
                     key={notification.id}
                     notification={notification}
-                    handleOnClick={() =>
-                      handleOnClick(notification._id, !notification.read)
-                    }
+                    handleOnClick={(e) => {
+                      e.preventDefault();
+                      handleOnClick(notification._id, !notification.read);
+                    }}
                   />
                 </a>
               ))}

@@ -265,8 +265,10 @@ export const deleteEvent = async (eventId, token) => {
 // Tasks
 export const createTask = async (taskData, token) => {
   try {
+    console.log("Task Data:", taskData);
+    const eventPath = typeof taskData.event === 'string' ? taskData.event : taskData.event._id;
     const response = await api.post(
-      `/events/${taskData.event}/tasks`,
+      `/events/${eventPath}/tasks`,
       taskData,
       {
         headers: { Authorization: `Bearer ${token}` },
