@@ -13,6 +13,8 @@ import Profile from "./pages/Profile";
 import ManageEvent from "./pages/ManageEvent";
 import ManageTask from "./pages/ManageTask";
 import Users from "./pages/Users";
+import ManageUser from "./pages/ManageUser";
+import User from "./components/User";
 
 // ... other imports ...
 
@@ -36,12 +38,14 @@ const App = () => {
               <Route path="/" element={<Dashboard />} />
               <Route path="/event" element={<ManageEvent />} />
               <Route path="/task" element={<ManageTask />} />
+              <Route path="/user" element={<ManageUser />} />
               <Route path="/events" element={<Events />} />
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/users" element={<Users />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/event/:id" element={<Event />} />
               <Route path="/task/:id" element={<Task />} />
+              <Route path="/user/:id" element={<User />} />
               <Route path="/logout" element={<Logout />} />
             </Routes>
           </div>

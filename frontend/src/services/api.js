@@ -159,6 +159,33 @@ export const fetchUsersFromKeycloak = async (token) => {
   }
 };
 
+export const updateUser = async (userData, token) => {
+  try {
+    const response = await axios.put(
+      `${import.meta.env.VITE_USERS_URL}/${userData.id}`,
+      userData,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error Updating User:", error);
+    throw error;
+  }
+};
+
+export const deleteUser = async (userId, token) => {
+  try {
+    await axios.delete(`${import.meta.env.VITE_USERS_URL}/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.error(`Error Deleting User ID ${userId}:`, error);
+    throw error;
+  }
+};
+
 // Events
 export const createEvent = async (url, eventData, token) => {
   try {
