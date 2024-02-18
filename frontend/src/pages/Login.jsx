@@ -36,11 +36,12 @@ const Login = () => {
     try {
       return await fetchUserByUsername(username, accessToken);
     } catch (error) {
-      console.error("Error Fetching User by Username:", error);
       if (error.response && error.response.status === 404) {
+        console.log("User not found, creating new user, if in keycloak.");
         const userDetails = await getUserDetails(accessToken);
         return await createUser(userDetails, accessToken);
       } else {
+        console.error("Error Fetching User by Username:", error);
         throw error;
       }
     }

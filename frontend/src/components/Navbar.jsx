@@ -8,6 +8,7 @@ const Navbar = () => {
       <Link to="/events">Events</Link>
       <Link to="/tasks">Tasks</Link>
       <Link to="/profile">Profile</Link>
+      <Link to="/users">Users</Link>
       <NotificationModal />
       <Link to="/logout">Logout</Link>
     </div>

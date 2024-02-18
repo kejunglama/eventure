@@ -147,6 +147,18 @@ export const getUserDetails = async (accessToken) => {
   }
 };
 
+export const fetchUsersFromKeycloak = async (token) => {
+  try {
+    const response = await axios.get(import.meta.env.VITE_USERS_URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error Fetching Users:", error);
+    throw error;
+  }
+};
+
 // Events
 export const createEvent = async (url, eventData, token) => {
   try {
