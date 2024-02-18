@@ -22,6 +22,7 @@ import ChangePassword from "./pages/ChangePassword";
 const App = () => {
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
+  const isAdmin = user ? JSON.parse(user).isAdmin : false;
 
   useEffect(() => {
     if (!user) {
@@ -33,7 +34,7 @@ const App = () => {
     <div className="font-Arial min-h-screen bg-gray-200">
       {user ? (
         <>
-          <Navbar />
+          <Navbar isAdmin={isAdmin} />
           <div className="container mx-auto px-16 mt-8">
             <Routes>
               <Route path="/" element={<Dashboard />} />
