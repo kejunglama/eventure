@@ -56,6 +56,7 @@ export const updateUser = async (req, res) => {
       user.name = req.body.name || user.name;
       user.username = req.body.username || user.username;
       user.password = req.body.password || user.password;
+      user.isAdmin = req.body.isAdmin || user.isAdmin;
       const updatedUser = await user.save();
       res.status(200).json(updatedUser);
     }
