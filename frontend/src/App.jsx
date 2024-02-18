@@ -15,6 +15,7 @@ import ManageTask from "./pages/ManageTask";
 import Users from "./pages/Users";
 import ManageUser from "./pages/ManageUser";
 import User from "./components/User";
+import ChangePassword from "./pages/ChangePassword";
 
 // ... other imports ...
 
@@ -36,16 +37,20 @@ const App = () => {
           <div className="container mx-auto px-16 mt-8">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/event" element={<ManageEvent />} />
-              <Route path="/task" element={<ManageTask />} />
-              <Route path="/user" element={<ManageUser />} />
               <Route path="/events" element={<Events />} />
-              <Route path="/tasks" element={<Tasks />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/event/:id" element={<Event />} />
+              <Route path="/event" element={<ManageEvent />} />
+              <Route path="/tasks" element={<Tasks />} />
               <Route path="/task/:id" element={<Task />} />
+              <Route path="/task" element={<ManageTask />} />
+              <Route path="/users" element={<Users />} />
               <Route path="/user/:id" element={<User />} />
+              <Route path="/user" element={<ManageUser />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/user/:id/change-password/"
+                element={<ChangePassword />}
+              />
               <Route path="/logout" element={<Logout />} />
             </Routes>
           </div>

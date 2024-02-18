@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import RowDetail from "../components/RowDetail";
-import api, { deleteUser } from "../services/api";
+import { deleteUser } from "../services/api";
 import { useSnackbar } from "notistack";
 import LinkCus from "./LinkCus";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit, FiLock, FiTrash2 } from "react-icons/fi";
 import { formatDistanceToNow } from "date-fns";
 
 const User = () => {
@@ -20,15 +20,15 @@ const User = () => {
     navigate("/users");
   };
 
-  const changePassword = () => {
-    // Implement password change logic here
-  };
-
   return (
     <div>
       <div className="flex justify-between items-center">
         <h1 className="text-2xl mb-4">User Details</h1>
         <div className="flex gap-4">
+          <LinkCus to={`/user/${user.id}/change-password`}>
+            Change Password
+            <FiLock />
+          </LinkCus>
           <LinkCus to="/user" state={{ user: user }}>
             Edit
             <FiEdit />

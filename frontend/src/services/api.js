@@ -186,10 +186,26 @@ export const deleteUser = async (userId, token) => {
   }
 };
 
-// Events
-export const createEvent = async (url, eventData, token) => {
+export const changePassword = async (userId, password, token) => {
   try {
-    const response = await api.post(url, eventData, {
+    const response = await axios.put(
+      `${import.meta.env.VITE_USERS_URL}/${userId}/reset-password`,
+      { value: password, type: "password", temporary: false },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error Changing Password:", error);
+    throw error;
+  }
+};
+
+// Events
+export const createEvent = async (eventData, token) => {
+  try {
+    const response = await api.post(`/events`, eventData, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
