@@ -1,0 +1,1629 @@
+{
+	"info": {
+		"_postman_id": "43f291f0-6860-45c6-bf0d-7c77501ccb7d",
+		"name": "Eventure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13409671"
+	},
+	"item": [
+		{
+			"name": "Keycloak",
+			"item": [
+				{
+					"name": "Auth with Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "web-app",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "kejung",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/ETM-MERN/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"ETM-MERN",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_key",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "test-app",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/realms/myRealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"realms",
+										"myRealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Undertow/1"
+								},
+								{
+									"key": "Server",
+									"value": "WildFly/10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Dec 2023 12:02:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_request\",\n    \"error_description\": \"Missing form parameter: grant_type\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Auth with Token Refresh",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "web-app",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0R0tBRFJ2YW9IVkdOSlBKVTJ6SV9Pa1ZyS2dKMUJFbDNIUFYzYmFOenlnIn0.eyJqdGkiOiJmYmE1Nzc2MS1iNTk2LTRhZWItYThlYi0xYjYyYTBiMDhmNmYiLCJleHAiOjE3MDcyMjI3MjAsIm5iZiI6MCwiaWF0IjoxNzA3MjIwOTIwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvRVRNLU1FUk4iLCJhdWQiOiJ3ZWItYXBwIiwic3ViIjoiMTExYjkyMjAtMzdkMS00YWE2LWJmZmEtNzk4YWNhYjI0NWRkIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6IndlYi1hcHAiLCJhdXRoX3RpbWUiOjAsInNlc3Npb25fc3RhdGUiOiJjOGJhOWU1YS0zZGJiLTRlM2EtOWQ5YS05MzQwZTZjYjY4OWEiLCJjbGllbnRfc2Vzc2lvbiI6IjRhMWQ2YmFkLTRkYjAtNDFiZi04YmJlLTg0OGYxNzNjOGJmNiIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJ2aWV3LXByb2ZpbGUiXX19fQ.GcXMEDVaxWq3-Q92tpLvVpEH8X297UKjYbrGFkiSyi0-M40kYJ3LJSIgoSMLP_89SbvFukDTiuZ5pHg4DkIGPRO40dN2avlEm6XwgJeiHGj_PpCut9QwXTVfqFSjMGq-mKDeYAHGV49EJ0dRcGPybfRDLomh7rjFXonU_XBhvzu7ln730JyqpUSdjdd9HRDW8dKbKBGCFER-26JODSr-i6feO7-u5HEicWPcMadsWPfuBnBPBL6Sr48pIKrSNmdqv7k8q2s2R6Y8c_XSSP3bA9PDAvApwmw2fTTytxmIc-o5T7xGD6Fw4utKoGPkqkYattZHU59nlrlBtZ0D1bkIlg",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/ETM-MERN/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"ETM-MERN",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_key",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "test-app",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/realms/myRealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"realms",
+										"myRealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Undertow/1"
+								},
+								{
+									"key": "Server",
+									"value": "WildFly/10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Dec 2023 12:02:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_request\",\n    \"error_description\": \"Missing form parameter: grant_type\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/admin/realms/ETM-MERN/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"admin",
+								"realms",
+								"ETM-MERN",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_key",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "test-app",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/realms/myRealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"realms",
+										"myRealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Undertow/1"
+								},
+								{
+									"key": "Server",
+									"value": "WildFly/10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Dec 2023 12:02:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_request\",\n    \"error_description\": \"Missing form parameter: grant_type\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"<new first name>\",\r\n    \"lastName\": \"<new last name>\",\r\n    \"email\": \"<new e-mail address>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/admin/realms/ETM-MERN/users/6eb44a35-d28d-4ce1-acf1-9f67c9428f96",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"admin",
+								"realms",
+								"ETM-MERN",
+								"users",
+								"6eb44a35-d28d-4ce1-acf1-9f67c9428f96"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_key",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "test-app",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/realms/myRealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"realms",
+										"myRealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Undertow/1"
+								},
+								{
+									"key": "Server",
+									"value": "WildFly/10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Dec 2023 12:02:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_request\",\n    \"error_description\": \"Missing form parameter: grant_type\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"password\",\r\n    \"value\": \"new-password\",\r\n    \"temporary\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/admin/realms/ETM-MERN/users/178d322a-9820-47ac-9fd9-6390b05b8ef2/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"admin",
+								"realms",
+								"ETM-MERN",
+								"users",
+								"178d322a-9820-47ac-9fd9-6390b05b8ef2",
+								"reset-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_key",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "test-app",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/realms/myRealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"realms",
+										"myRealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Undertow/1"
+								},
+								{
+									"key": "Server",
+									"value": "WildFly/10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Dec 2023 12:02:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_request\",\n    \"error_description\": \"Missing form parameter: grant_type\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "APIMAN",
+					"item": [
+						{
+							"name": "Users",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Admin Babu\",\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/users/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/users/65aaa097d3e11af9e964d8db",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"65aaa097d3e11af9e964d8db"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve by un",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/users/username/admin",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"username",
+												"admin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve by id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/users/profile/admin",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"profile",
+												"admin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve all",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/users/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "authenticate",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/users/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isAdmin\": \"true\",\r\n    \"name\": \"Kejung Lama\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/users/65d216f432fd296372cdbc52",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"65d216f432fd296372cdbc52"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/users/65d20a7c8544ab12f1d196d4",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"65d20a7c8544ab12f1d196d4"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Events",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Events\",\r\n    \"desc\": \"Events schema\",\r\n    \"location\": \"In your house\",\r\n    \"date\": \"2017-01-01\",\r\n    \"responsible\": \"65a02a923fbfacc0203f2b0c\",\r\n    \"participants\": [\r\n        \"65a02a923fbfacc0203f2b0c\"\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/events/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/events/65a02dba17f35c2a1b6f9101",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"65a02dba17f35c2a1b6f9101"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve by responsible",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/events/responsible/65aaa097d3e11af9e964d8db",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"responsible",
+												"65aaa097d3e11af9e964d8db"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve all",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/events/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Updated Events\",\r\n    \"desc\": \"Events schema\",\r\n    \"location\": \"In your house\",\r\n    \"date\": \"2017-01-01\",\r\n    \"responsible\": \"65a02a923fbfacc0203f2b0c\",\r\n    \"participants\": [\r\n        \"65a02a923fbfacc0203f2b0c\"\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/events/65a02df2e6cbefb3710af8ef",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"65a02df2e6cbefb3710af8ef"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/events/65a02da417f35c2a1b6f90ff",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"65a02da417f35c2a1b6f90ff"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Tasks",
+							"item": [
+								{
+									"name": "retrieve all",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/tasks/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"tasks",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve all by assigned",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/tasks/assigned/65aaa097d3e11af9e964d8db",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"tasks",
+												"assigned",
+												"65aaa097d3e11af9e964d8db"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Task\",\r\n    \"desc\": \"Task schema\",\r\n    \"deadline\": \"2017-01-01\",\r\n    \"assigned\": \"65a02a923fbfacc0203f2b0c\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/events/65a02dba17f35c2a1b6f9101/tasks",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"65a02dba17f35c2a1b6f9101",
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Task\",\r\n    \"desc\": \"Task schema\",\r\n    \"deadline\": \"2017-01-01\",\r\n    \"assigned\": \"65a02a923fbfacc0203f2b0c\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/events/65a02dba17f35c2a1b6f9101/tasks/1",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"65a02dba17f35c2a1b6f9101",
+												"tasks",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/events/65a02da417f35c2a1b6f90ff/tasks/sfdasdfs",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"events",
+												"65a02da417f35c2a1b6f90ff",
+												"tasks",
+												"sfdasdfs"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Notifications",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"title\": \"Why you not there?\",\r\n  \"type\": \"task\",\r\n  \"users\": [\"65aaa097d3e11af9e964d8db\", \"613b337e4a7f5e6f4c4f5278\"]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api_endpoint}}/users/notifications",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"notifications"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{etm_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{api_endpoint}}/users/65aaa097d3e11af9e964d8db/notifications/",
+											"host": [
+												"{{api_endpoint}}"
+											],
+											"path": [
+												"users",
+												"65aaa097d3e11af9e964d8db",
+												"notifications",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Backend",
+					"item": [
+						{
+							"name": "Users",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Admin Babu\",\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5555/users",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5555/users/65a02a923fbfacc0203f2b0c",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"users",
+												"65a02a923fbfacc0203f2b0c"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve all",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5555/users",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "authenticate",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5555/users/authenticate",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"users",
+												"authenticate"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Admin Baba\",\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5555/users/65a02a923fbfacc0203f2b0c",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"users",
+												"65a02a923fbfacc0203f2b0c"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5555/users/65a02b133fbfacc0203f2b13",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"users",
+												"65a02b133fbfacc0203f2b13"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Events",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Events\",\r\n    \"desc\": \"Events schema\",\r\n    \"location\": \"In your house\",\r\n    \"date\": \"2017-01-01\",\r\n    \"responsible\": \"65a02a923fbfacc0203f2b0c\",\r\n    \"participants\": [\r\n        \"65a02a923fbfacc0203f2b0c\"\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5555/events",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"events"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5555/events/65a02dba17f35c2a1b6f9101",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"events",
+												"65a02dba17f35c2a1b6f9101"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "retrieve all",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5555/events",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"events"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Updated Events\",\r\n    \"desc\": \"Events schema\",\r\n    \"location\": \"In your house\",\r\n    \"date\": \"2017-01-01\",\r\n    \"responsible\": \"65a02a923fbfacc0203f2b0c\",\r\n    \"participants\": [\r\n        \"65a02a923fbfacc0203f2b0c\"\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5555/events/65a02df2e6cbefb3710af8ef",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"events",
+												"65a02df2e6cbefb3710af8ef"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5555/events/65a02da417f35c2a1b6f90ff",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"events",
+												"65a02da417f35c2a1b6f90ff"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Tasks",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Task\",\r\n    \"desc\": \"Task schema\",\r\n    \"deadline\": \"2017-01-01\",\r\n    \"assigned\": \"65a02a923fbfacc0203f2b0c\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5555/events/65a02dba17f35c2a1b6f9101/tasks",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5555",
+											"path": [
+												"events",
+												"65a02dba17f35c2a1b6f9101",
+												"tasks"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0R0tBRFJ2YW9IVkdOSlBKVTJ6SV9Pa1ZyS2dKMUJFbDNIUFYzYmFOenlnIn0.eyJqdGkiOiJlYmM2M2NlMC02MDllLTQ5MWMtODNiYi04Yjg2YmVhOGRmNDciLCJleHAiOjE3MDgyNjkxMTYsIm5iZiI6MCwiaWF0IjoxNzA4MjY3MzE2LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvRVRNLU1FUk4iLCJhdWQiOiJ3ZWItYXBwIiwic3ViIjoiNWRjOWEzMGUtYjhhNy00MTk1LWI3ODktNmEzMDFlZTk4Y2U4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViLWFwcCIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6IjQ4NDM3MDgxLTk5MGYtNGNjMi05Zjc4LWM0NjI3MzEyMmUyNiIsImFjciI6IjEiLCJjbGllbnRfc2Vzc2lvbiI6IjQxM2ZmZTZjLTgwMjgtNDljNy05ODBhLTI2MWIxYWMwZjEyZCIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InJlYWxtLW1hbmFnZW1lbnQiOnsicm9sZXMiOlsibWFuYWdlLXVzZXJzIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50Iiwidmlldy1wcm9maWxlIl19fSwibmFtZSI6IktlanVuZyBMYW1hIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4iLCJnaXZlbl9uYW1lIjoiS2VqdW5nIiwiZmFtaWx5X25hbWUiOiJMYW1hIiwiZW1haWwiOiJrZWp1bmdsYW1hQGdtYWlsLmNvbSJ9.eZAgMpCWzhgRRGNY_ldLsRrKbtbphvMN8RtmQ1xLanY7ftruqUtD5ffYIpxjCmHhVYP7lGyrmGu_zs5mwrnIVMarFfrR5sL-EaImZHQDZe6PnBbeirRZLx6qOCc2HL6tcHJu03gUEBFKE9IKnlttWY_DTac3QgTrKhAlFcKQPo4IRfuaigtMktyMA24hl8PVTLUlnTGZuazO8eSca7znJJByCRG3ksrzMZiCq545himwsfmql78pWAi7b77R_6wVMzn6vXfhSQ7ysCORVizaNAlmvtIOLWuTZrs0Ap0yt8qV4z9OKNgrospJRmtzH70K8isSwWAaChp31mGlr0kHLA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "etm_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0R0tBRFJ2YW9IVkdOSlBKVTJ6SV9Pa1ZyS2dKMUJFbDNIUFYzYmFOenlnIn0.eyJqdGkiOiIxNmRiMjllNy04OTYzLTQzMGQtOWUyMy1iYjUyYjBlY2IyNzgiLCJleHAiOjE3MDgwOTUxMTMsIm5iZiI6MCwiaWF0IjoxNzA4MDkzMzEzLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvRVRNLU1FUk4iLCJhdWQiOiJ3ZWItYXBwIiwic3ViIjoiMTc4ZDMyMmEtOTgyMC00N2FjLTlmZDktNjM5MGIwNWI4ZWYyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViLWFwcCIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6IjFmOWU2OWFhLWQ0OTUtNDk0OC04YmY1LWUzODMwOTU1MmM0NiIsImFjciI6IjEiLCJjbGllbnRfc2Vzc2lvbiI6ImM2NjY4NDNlLTZkOGItNDIzOC04YTA1LTM2MjRiYjliNTliOCIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJ2aWV3LXByb2ZpbGUiXX19LCJuYW1lIjoicmFtIGxhbGkiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyYW1sYWxpIiwiZ2l2ZW5fbmFtZSI6InJhbSIsImZhbWlseV9uYW1lIjoibGFsaSIsImVtYWlsIjoicmFtQHJhbS5jb20ifQ.QNfhYacuAnjtakah1kf8WLb5njI3UvGGrDhctMVNg-BSOU6_L-jQFGB0qQ1SOaNxKN5b8YJQYSOk-YIhAS0u-6Nlmd6wMCpr3NLccOVjCsbfSD-WXHh_tXp7uvdTXlq9xslO5NaE-Guej3R3Wx1zG0-dnsmn9-aaE8bvUOHID3qz6BqbH-X7vyR2fs4sy0jIXQ4pQXA08Au759fr8oDagVFeZyRpy6_1JTXHwfNN1CHjAb-8y3zZHy4szAoW0R40tGZ9Sndy-OLFZxHZi_Wd_PL3I6ZJrOQxDfQ9taC4tnS2tFjyUK_cDxJEUtjOjCzrbooKeq267bpNWo4zPinBEw"
+		},
+		{
+			"key": "api_endpoint",
+			"value": "https://localhost:8443/apiman-gateway/ETM-MERN/default/2.2"
+		}
+	]
+}
